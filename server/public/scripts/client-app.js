@@ -37,6 +37,14 @@ myApp.controller("BookController", ["$http", function($http) {
       });
   }
 
+  self.updateBook = function(book) {
+    console.log('update book: ', book);
+    $http.put('/books/' + book.id, book)
+      .then(function(response) {
+        getBooks();
+      });
+  }
+
 }]);
 
 // $(document).ready(function () {

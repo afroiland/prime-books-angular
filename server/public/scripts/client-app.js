@@ -6,7 +6,7 @@ myApp.controller("BookController", ["$http", function($http) {
   var self = this;
   self.newBook = {};
   self.books = [];
-
+  
   getBooks();
 
   // read only

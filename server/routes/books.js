@@ -118,5 +118,29 @@ router.put('/:id', function(req, res) {
 
 }); // end route
 
+router.get('/genres', function(req, res) {
+  pg.connect(connectionString, function(err, client, done){
+    if(err) {
+      console.log("Could not connect to Database to get book Genres");
+      res.sendStatus(500);
+    }
+    console.log("getting genres");
+    client.query('SELECT DISTINCT genre FROM books', function(err, result) {
+      done(); // close the connection.
 
+      // console.log('the client!:', client);
+
+      if(err) {
+        // console.log('select query error: ', err);
+        res.sendStatus(500);
+      }
+      res.send(result.rows);
+      console.log("genres: ", result.rows);
+
+    });
+
+  });
+});
+
+// router.get('/somebooks/:id')
 module.exports = router;

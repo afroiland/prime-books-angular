@@ -6,8 +6,10 @@ myApp.controller("BookController", ["$http", function($http) {
   var self = this;
   self.newBook = {};
   self.books = [];
+  self.genres = [];
 
   getBooks();
+  getGenres();
 
   // read only
   function getBooks() {
@@ -15,6 +17,7 @@ myApp.controller("BookController", ["$http", function($http) {
       .then(function(response) {
         console.log(response.data);
         self.books = response.data;
+        getGenres();
       });
   }
 
@@ -44,6 +47,14 @@ myApp.controller("BookController", ["$http", function($http) {
         getBooks();
       });
   }
+
+  function getGenres() {
+    $http.get('/books/genres')
+    .then(function(response) {
+      self.genres = response.data;
+    })
+  }
+
 
 }]);
 

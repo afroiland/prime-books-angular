@@ -51,7 +51,7 @@
       <h2>Books</h2>
       <div class="book" ng-repeat="book in bookController.books">
         <p>{{book.title}} By: {{book.author}}</p>
-        <button ng-click="bookController.clickMe(book)">Click Me</button>
+        <button ng-click="bookController.deleteBook(book)">Delete</button>
       </div>
     </main>
 

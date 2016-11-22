@@ -49,14 +49,21 @@
       </form>
 
       <h2>Books</h2>
-      <div class="book" ng-repeat="book in bookController.books">
-        <input value="{{book.title}}" ng-model="bookController.books[$index].title"/>
-        <input value="{{book.author}}" ng-model="bookController.books[$index].author"/>
-        <input value="{{book.genre}}" ng-model="bookController.books[$index].genre"/>
+
+
+      <select ng-model="selectedItem" ng-options="genre.genre for genre in bookController.genres"></select>
+
+
+
+
+      <div class="book" ng-repeat="book in bookController.books | filter: {'genre': selectedItem.genre}:true">
+        <input value="{{book.title}}" ng-model="book.title"/>
+        <input value="{{book.author}}" ng-model="book.author"/>
+        <input value="{{book.genre}}" ng-model="book.genre"/>
         <button ng-click="bookController.updateBook(book)">Update</button>
         <button ng-click="bookController.deleteBook(book)">Delete</button>
       </div>
     </main>
-
+    {{selectedItem}}
   </body>
 </html>
